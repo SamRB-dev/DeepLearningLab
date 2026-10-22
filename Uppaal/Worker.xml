@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan request;
+chan release;
+</declaration>
+	<template>
+		<name>Controller</name>
+		<location id="id0" x="-340" y="-145">
+			<name x="-350" y="-179">received</name>
+		</location>
+		<location id="id1" x="-221" y="-238">
+			<name x="-231" y="-272">released</name>
+		</location>
+		<location id="id2" x="-484" y="-229">
+			<name x="-494" y="-263">Idle</name>
+		</location>
+		<init ref="id2"/>
+		<transition id="id3">
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-264" y="-204">release!</label>
+		</transition>
+		<transition id="id4">
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-476" y="-178">request?</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">Worker</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id5" x="-357" y="-76">
+			<name x="-367" y="-110">Idle</name>
+		</location>
+		<location id="id6" x="25" y="-85">
+			<name x="-17" y="-127">Working</name>
+		</location>
+		<location id="id7" x="-170" y="17">
+			<name x="-195" y="34">Waiting</name>
+		</location>
+		<init ref="id5"/>
+		<transition id="id8">
+			<source ref="id6"/>
+			<target ref="id5"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-68" y="-51">release?</label>
+		</transition>
+		<transition id="id10">
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-339" y="-46">request!</label>
+		</transition>
+	</template>
+	<system>w = Worker();
+c = Controller();
+
+system w, c;
+</system>
+	<queries>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+	</queries>
+</nta>

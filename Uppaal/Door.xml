@@ -42,9 +42,10 @@ system ObjDoor;
 </system>
 	<queries>
 		<query>
-			<formula>E&lt;&gt; ObjDoor.Alarm</formula>
+			<formula>
+E&lt;&gt; ObjDoor.Closed</formula>
 			<comment/>
-			<result outcome="success" type="quality" timestamp="2026-10-22 11:05:08 +0200">
+			<result outcome="success" type="quality" timestamp="2026-10-22 11:12:07 +0200">
 			</result>
 		</query>
 	</queries>
