@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock clk;</declaration>
+	<template>
+		<name x="5" y="5">Door</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id0" x="76" y="-119">
+			<name x="66" y="-153">Open</name>
+			<label kind="invariant" x="93" y="-127">clk &lt;= 10</label>
+		</location>
+		<location id="id1" x="-221" y="-110">
+			<name x="-246" y="-102">Closed</name>
+		</location>
+		<location id="id2" x="-17" y="59">
+			<name x="0" y="51">Alarm</name>
+		</location>
+		<init ref="id1"/>
+		<transition id="id3">
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<nail x="-85" y="-153"/>
+		</transition>
+		<transition id="id4">
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="guard" x="34" y="-25">clk &gt;= 10</label>
+		</transition>
+		<transition id="id5">
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-153" y="-85">clk = 0</label>
+			<nail x="-85" y="-85"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+ObjDoor = Door();
+// List one or more processes to be composed into a system.
+system ObjDoor;
+</system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt; ObjDoor.Alarm</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2026-10-22 11:05:08 +0200">
+			</result>
+		</query>
+	</queries>
+</nta>
